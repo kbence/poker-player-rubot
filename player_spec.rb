@@ -16,8 +16,7 @@ describe 'Player' do
           "version":"Version name 1",
           "id":0
       },
-          {
-              "name":"Player 2",
+          {"name":"Rubot",
           "stack":1000,
           "status":"active",
           "bet":0,
