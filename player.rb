@@ -7,16 +7,16 @@ class Player
 
   def bet_request(game_state)
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
-
+    bet = 0
     for card in player['hole_cards']
         if card[:rank] == "A"
-            1000
+            bet = 1000
         else
-            100
+            bet = 100
         end
     end
 
-    25
+    bet
   end
 
   def showdown(game_state)
