@@ -41,6 +41,10 @@ class Player
 
   def showdown(game_state)
     @last_pot = -1
+
+    puts '----------------------- SHOWDOWN'
+    p game_state
+    puts '----------------------- /SHOWDOWN'
   end
 end
 
