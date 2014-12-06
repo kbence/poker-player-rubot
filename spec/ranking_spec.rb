@@ -48,6 +48,7 @@ describe 'Ranking' do
     end
   end
 
+
   # describe 'permute' do
   #   it 'should return our only two cards' do
   #     expect(Ranking.new.permute(cards('S1', 'S2'))).to eq([cards('S1', 'S2')])
