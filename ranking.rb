@@ -4,8 +4,34 @@ class Ranking
     value = 0
     value += rank_cards(cards)
     value += rank_same_cards(cards)
+    value += rank_flush(cards)
 
     value
+  end
+
+  def rank_flush(cards)
+    suits = {}
+
+    cards.each do |card|
+      suit = card['suit']
+
+      if suits.has_key? suit
+        suits[suit] += 1
+      else
+        suits[suit] = 1
+      end
+    end
+
+    case suits.values.max
+      when 3
+        30
+      when 4
+        40
+      when 5
+        50
+      else
+        0
+    end
   end
 
   def rank_same_cards(cards)

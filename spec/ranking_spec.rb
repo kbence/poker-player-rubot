@@ -38,5 +38,17 @@ describe 'Ranking' do
     it 'should return 50 for three of a kind' do
       Ranking.new.rank(cards('C4', 'D4', 'D3', 'S4')).should be(50)
     end
+
+    it 'should return 30 in case of flush chance' do
+      Ranking.new.rank(cards('S5', 'S2', 'S3', 'D4', 'D6')).should be(30)
+    end
+
+    it 'should return 40 in case of almost flush' do
+      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6')).should be(40)
+    end
+
+    it 'should return 50 in case of almost flush' do
+      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6')).should be(50)
+    end
   end
 end
