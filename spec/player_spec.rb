@@ -476,6 +476,59 @@ describe 'Player' do
       expect(player.bet_request(game_state)).to eq(0)
     end
 
+
+    it 'full house' do
+      player = Player.new
+      game_state = JSON.parse('{
+          "players":[
+          {"name":"Player 1",
+          "stack":1000,
+          "status":"active",
+          "bet":0,
+          "hole_cards":[],
+          "version":"Version name 1",
+          "id":0
+      },
+          {"name":"Rubot",
+          "stack":1000,
+          "status":"active",
+          "bet":0,
+          "hole_cards":[
+            {
+              "rank": "4",
+              "suit": "hearts"
+            },
+            {
+              "rank": "4",
+              "suit": "spades"
+            }
+          ],
+          "version":"Version name 2",
+          "id":1
+      }
+      ],
+          "small_blind":10,
+          "orbits":0,
+          "dealer":0,
+          "community_cards":[
+            {
+              "rank": "6",
+              "suit": "hearts"
+            },
+            {
+              "rank": "6",
+              "suit": "spades"
+            },
+            {
+              "rank": "6",
+              "suit": "diamonds"
+            }],
+          "current_buy_in":0,
+          "pot":0
+      }')
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(150) * BET_MULTIPLIER)
+    end
+
     # it 'should return blah for a straight flush' do
     #   player = Player.new
     #   game_state = JSON.parse('{
