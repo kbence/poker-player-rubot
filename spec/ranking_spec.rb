@@ -39,10 +39,6 @@ describe 'Ranking' do
       expect(Ranking.new.rank(cards('C4', 'D4', 'D3', 'S4'))).to eq(50)
     end
 
-    it 'should return 30 in case of flush chance' do
-      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'D4', 'D6'))).to eq(30)
-    end
-
     it 'should return 40 in case of almost flush' do
       Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6')).should be(40)
     end

@@ -28,8 +28,6 @@ class Ranking
     end
 
     case suits.values.max
-      when 3
-        30
       when 4
         40
       when 5
