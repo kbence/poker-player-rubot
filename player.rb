@@ -48,6 +48,7 @@ class Player
   end
 end
 
+
 def log(msg)
   puts "[#{Time.new.strftime("%Y-%m-%d %H:%M:%S")}] #{msg}"
 end
