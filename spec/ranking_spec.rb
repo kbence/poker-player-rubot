@@ -48,27 +48,31 @@ describe 'Ranking' do
     end
   end
 
+  describe 'combine' do
+    it 'should return our only two cards' do
+      expect(Ranking.new.combine(cards('S1', 'S2'))).to eq([cards('S1', 'S2')])
+    end
 
-  # describe 'permute' do
-  #   it 'should return our only two cards' do
-  #     expect(Ranking.new.permute(cards('S1', 'S2'))).to eq([cards('S1', 'S2')])
-  #   end
-  #
-  #   it 'should return one combination for up to five cards' do
-  #     expect(Ranking.new.permute(cards('S1', 'S2', 'S3', 'S4', 'S5'))).to eq([cards('S1', 'S2', 'S3', 'S4', 'S5')])
-  #   end
-  #
-  #   it 'should return one combination for up to five cards' do
-  #     expect(Ranking.new.permute(cards('S1', 'S2', 'S3', 'S4', 'S5', 'S6'))).to eq([
-  #        cards('S1', 'S2', 'S3', 'S4', 'S5'),
-  #        cards('S1', 'S2', 'S4', 'S5', 'S6'),
-  #     ])
-  #   end
-  # end
+    it 'should return one combination for up to five cards' do
+      expect(Ranking.new.combine(cards('S1', 'S2', 'S3', 'S4', 'S5'))).to eq([cards('S1', 'S2', 'S3', 'S4', 'S5')])
+    end
 
-  describe 'choose' do
-    it 'should return the only combination for less than expected' do
-      expect(Ranking.new)
+    it 'should return 4 combinations for six cards' do
+      expect(Ranking.new.combine(cards('S1', 'S2', 'S3', 'S4', 'S5', 'S6')).length).to eq(6)
+    end
+
+    it 'should return 10 combinations for seven cards' do
+      expect(Ranking.new.combine(cards('S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7')).length).to eq(20)
+    end
+  end
+
+  describe 'multi_rank' do
+    it 'should be 0 if hole cards does not change the result' do
+      expect(Ranking.new.multi_rank(cards('S1', 'S2', 'SA', 'DA', 'HA'))).to eq(0)
+    end
+
+    it 'should not be 0 if hole cards does change the result' do
+      expect(Ranking.new.multi_rank(cards('S1', 'S2', 'S3', 'S4', 'SA'))).not_to eq(0)
     end
   end
 end

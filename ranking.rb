@@ -9,6 +9,22 @@ class Ranking
     value
   end
 
+  def multi_rank(cards, min_rate = 1.2)
+    community_cards = cards[2..-1]
+
+    max_value = combine(cards).map do |combo|
+      rank(combo)
+    end.max
+
+    community_value = rank(community_cards)
+
+    if max_value > min_rate * community_value then
+      max_value
+    else
+      0
+    end
+  end
+
   def debug_val(msg, val)
     puts "#{msg}: #{val}"
     val
@@ -16,10 +32,19 @@ class Ranking
 
   def combine(cards)
     hole_cards = cards[0..1]
-    community_cards[2..-1]
-  end
+    community_cards = cards[2..-1]
 
-  def choose(cards, num)
+    all_combos =
+        community_cards.combination([3, community_cards.length].min).map { |cardlist| hole_cards + cardlist }
+
+    if community_cards.length > 3
+      all_combos +=
+          community_cards.combination([4, community_cards.length].min).map { |cardlist| [hole_cards[0]] + cardlist } +
+          community_cards.combination([4, community_cards.length].min).map { |cardlist| [hole_cards[1]] + cardlist }
+    end
+
+    # p all_combos.map{ |combo| combo.map { |card| short_card card } }
+    all_combos
   end
 
   def rank_flush(cards)
@@ -93,4 +118,9 @@ class Ranking
   def weight_sqrt(value)
     Math.sqrt(value).to_i
   end
+end
+
+def short_card(card)
+  letters = {'hearts' => 'H', 'diamonds' => 'D', 'spades' => 'D', 'clubs' => 'C'}
+  letters[card['suit']] + card['rank']
 end
