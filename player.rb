@@ -8,9 +8,9 @@ class Player
   def bet_request(game_state)
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
     bet = 0
-    for card in player['hole_cards']
-        if card[:rank] == "A" || card[:rank] == "K" || card[:rank] == "Q"
-            bet = 1000
+    player['hole_cards'].each do |card|
+        if card['rank'] == "A" || card['rank'] == "K" || card['rank'] == "Q"
+            bet = 500
         else
             bet = 100
         end
