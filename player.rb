@@ -25,6 +25,8 @@ class Player
       result = ranking.weight_sqrt(ranking.rank(cards)) * BET_MULTIPLIER
     end
 
+    puts "hole cards = #{player['hole_cards'].map { |c| short_card c }}"
+    puts "community cards = #{game_state['community_cards'].map { |c| short_card c }}"
     puts "bet -> #{result}"
 
     @last_pot = pot
@@ -34,4 +36,9 @@ class Player
   def showdown(game_state)
 
   end
+end
+
+def short_card(card)
+  letters = {'hearts' => 'H', 'diamonds' => 'D', 'spades' => 'D', 'clubs' => 'C'}
+  letters[card['suit']] + card['rank']
 end
