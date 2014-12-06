@@ -30,5 +30,13 @@ describe 'Ranking' do
     it 'should return 30 for high pair' do
       Ranking.new.rank(cards('C10', 'D10')).should be(30)
     end
+
+    it 'should return 40 for two pairs' do
+      Ranking.new.rank(cards('C9', 'D9', 'S5', 'H5')).should be(40)
+    end
+
+    it 'should return 50 for three of a kind' do
+      Ranking.new.rank(cards('C4', 'D4', 'D3', 'S4')).should be(50)
+    end
   end
 end

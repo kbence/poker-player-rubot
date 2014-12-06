@@ -21,12 +21,20 @@ class Ranking
       end
     end
 
-    if ranks.has_value? 2
-      20
-    else
-      0
+    if ranks.has_value? 3
+      return 50
     end
 
+    if ranks.has_value? 2
+      return case ranks.select { |k, v| v == 2 }.length
+               when 2
+                 40
+               else
+                 20
+             end
+    end
+
+    0
   end
 
   def rank_cards(cards)
