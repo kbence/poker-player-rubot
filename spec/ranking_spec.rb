@@ -40,11 +40,11 @@ describe 'Ranking' do
     end
 
     it 'should return 40 in case of almost flush' do
-      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6')).should be(40)
+      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6')).should be(60)
     end
 
     it 'should return 50 in case of almost flush' do
-      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6')).should be(50)
+      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6')).should be(100)
     end
   end
 end

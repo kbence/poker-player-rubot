@@ -2,7 +2,9 @@ require 'rspec'
 require_relative '../player'
 require 'json'
 
-BET_MULTIPLIER = 10
+require_relative '../ranking'
+
+BET_MULTIPLIER = 20 
 
 describe 'Player' do
   describe 'bet_request' do
@@ -83,7 +85,7 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(5 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(5) * BET_MULTIPLIER)
     end
 
     it 'should return 50 for a J, three of the same suite' do
@@ -126,7 +128,7 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(5 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(5) * BET_MULTIPLIER)
     end
 
 
@@ -170,10 +172,10 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(25 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(25) * BET_MULTIPLIER)
     end
 
-    it 'should return 250 for an Ace and King' do
+    it 'should return for an Ace and King' do
       player = Player.new
       game_state = JSON.parse('{
           "players":[
@@ -210,7 +212,7 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(10 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(10) * BET_MULTIPLIER)
     end
 
     it 'should return 500 for a pair of fours' do
@@ -262,10 +264,10 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(20 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(20) * BET_MULTIPLIER)
     end
 
-    it 'should return 550 for a pair of fours and a King' do
+    it 'a pair of fours and a King' do
       player = Player.new
       game_state = JSON.parse('{
           "players":[
@@ -314,10 +316,10 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(20 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(20) * BET_MULTIPLIER)
     end
 
-    it 'should return 800 for a triple' do
+    it 'a triple' do
       player = Player.new
       game_state = JSON.parse('{
           "players":[
@@ -366,10 +368,10 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(50 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(60) * BET_MULTIPLIER)
     end
 
-    it 'should return 1000 for a flush' do
+    it 'a flush' do
       player = Player.new
       game_state = JSON.parse('{
           "players":[
@@ -412,13 +414,13 @@ describe 'Player' do
               "suit": "spades"
             },
             {
-              "rank": "4",
+              "rank": "2",
               "suit": "spades"
             }],
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(100 * BET_MULTIPLIER)
+      expect(player.bet_request(game_state)).to eq(Ranking.new.weight_sqrt(100) * BET_MULTIPLIER)
     end
 
     # it 'should return blah for a straight flush' do
