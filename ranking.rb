@@ -1,7 +1,7 @@
 class Ranking
   def rank(cards)
     value = 0
-    value += rank_cards(cards)
+    value += rank_cards(cards[0..1])
     value += rank_same_cards(cards)
     value += rank_flush(cards)
 
