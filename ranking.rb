@@ -33,7 +33,7 @@ class Ranking
     sum(cards.map do |card|
           rank = card['rank']
 
-          if %w(A Q K J).include? rank
+          if %w(A Q K J 10).include? rank
             5
           else
             0
