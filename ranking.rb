@@ -112,7 +112,7 @@ class Ranking
   end
 
   def sum(array)
-    array.inject { |sum, x| sum + x }
+    array.inject(0) { |sum, x| sum + x }
   end
 
   def weight_sqrt(value)

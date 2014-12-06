@@ -24,7 +24,7 @@ class Player
     if pot != @last_pot
       cards = player['hole_cards']
       cards = player['hole_cards'] + community_cards unless community_cards.nil?
-      hand_value = ranking.rank(cards)
+      hand_value = ranking.multi_rank(cards)
       result = ranking.weight_sqrt(hand_value) * BET_MULTIPLIER
     end
 
