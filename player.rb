@@ -1,3 +1,4 @@
+require_relative 'ranking'
 
 class Player
 
@@ -6,16 +7,10 @@ class Player
   NAME = 'Rubot'
 
   def bet_request(game_state)
+    ranking = Ranking.new
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
-    bet = 0
-    player['hole_cards'].each do |card|
-        if card['rank'] == "A" || card['rank'] == "K" || card['rank'] == "Q" || card['rank'] == "J"
-            bet = 500
-        elsif card['rank'] == "10"
-            bet = 100
-        end
-    end
-    bet
+
+    ranking.rank(player['hole_cards']) * 50
   end
 
   def showdown(game_state)
