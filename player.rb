@@ -38,7 +38,7 @@ class Player
   end
 
   def showdown(game_state)
-
+    @last_pot = -1
   end
 end
 
