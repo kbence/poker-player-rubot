@@ -5,7 +5,7 @@ class Player
   VERSION = "Default Ruby folding player"
 
   NAME = 'Rubot'
-  BET_MULTIPLIER = 10
+  BET_MULTIPLIER = 20
 
   def bet_request(game_state)
     ranking = Ranking.new
@@ -14,7 +14,7 @@ class Player
 
     cards = player['hole_cards']
     cards = player['hole_cards'] + community_cards unless community_cards.nil?
-    ranking.rank(cards) * BET_MULTIPLIER
+    ranking.weight_sqrt(ranking.rank(cards)) * BET_MULTIPLIER
   end
 
   def showdown(game_state)

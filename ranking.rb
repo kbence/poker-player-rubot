@@ -29,9 +29,9 @@ class Ranking
 
     case suits.values.max
       when 4
-        40
+        60
       when 5
-        50
+        100
       else
         0
     end
@@ -80,5 +80,9 @@ class Ranking
 
   def sum(array)
     array.inject { |sum, x| sum + x }
+  end
+
+  def weight_sqrt(value)
+    Math.sqrt(value).to_i
   end
 end
