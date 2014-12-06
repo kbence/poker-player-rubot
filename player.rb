@@ -33,6 +33,7 @@ class Player
     log "hand value -> #{hand_value}"
     log "bet -> #{result}"
     log "current buy-in -> #{game_state['current_buy_in']}"
+    log "minimum raise -> #{game_state['minimum_raise']}"
 
     @last_pot = pot
     result
