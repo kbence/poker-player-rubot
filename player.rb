@@ -9,13 +9,12 @@ class Player
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
     bet = 0
     player['hole_cards'].each do |card|
-        if card['rank'] == "A" || card['rank'] == "K" || card['rank'] == "Q"
+        if card['rank'] == "A" || card['rank'] == "K" || card['rank'] == "Q" || card['rank'] == "J"
             bet = 500
-        else
+        elsif card['rank'] == "10"
             bet = 100
         end
     end
-
     bet
   end
 
