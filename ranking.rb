@@ -14,6 +14,14 @@ class Ranking
     val
   end
 
+  def combine(cards)
+    hole_cards = cards[0..1]
+    community_cards[2..-1]
+  end
+
+  def choose(cards, num)
+  end
+
   def rank_flush(cards)
     suits = {}
 

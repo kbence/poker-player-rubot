@@ -40,11 +40,34 @@ describe 'Ranking' do
     end
 
     it 'should return 40 in case of almost flush' do
-      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6')).should be(60)
+      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6'))).to eq(40)
     end
 
     it 'should return 50 in case of almost flush' do
-      Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6')).should be(100)
+      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6'))).to eq(50)
+    end
+  end
+
+  # describe 'permute' do
+  #   it 'should return our only two cards' do
+  #     expect(Ranking.new.permute(cards('S1', 'S2'))).to eq([cards('S1', 'S2')])
+  #   end
+  #
+  #   it 'should return one combination for up to five cards' do
+  #     expect(Ranking.new.permute(cards('S1', 'S2', 'S3', 'S4', 'S5'))).to eq([cards('S1', 'S2', 'S3', 'S4', 'S5')])
+  #   end
+  #
+  #   it 'should return one combination for up to five cards' do
+  #     expect(Ranking.new.permute(cards('S1', 'S2', 'S3', 'S4', 'S5', 'S6'))).to eq([
+  #        cards('S1', 'S2', 'S3', 'S4', 'S5'),
+  #        cards('S1', 'S2', 'S4', 'S5', 'S6'),
+  #     ])
+  #   end
+  # end
+
+  describe 'choose' do
+    it 'should return the only combination for less than expected' do
+      expect(Ranking.new.)
     end
   end
 end
