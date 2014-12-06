@@ -32,6 +32,7 @@ class Player
     log "community cards = #{game_state['community_cards'].map { |c| short_card c }}"
     log "hand value -> #{hand_value}"
     log "bet -> #{result}"
+    log "current buy-in -> #{game_state['current_buy_in']}"
 
     @last_pot = pot
     result
