@@ -4,7 +4,6 @@ class Ranking
     value += debug_val('cards', rank_cards(cards[0..1]))
     value += debug_val('same cards', rank_same_cards(cards))
     value += debug_val('flush', rank_flush(cards))
-    puts '----'
 
     value
   end
@@ -26,7 +25,7 @@ class Ranking
   end
 
   def debug_val(msg, val)
-    puts "#{msg}: #{val}"
+    # puts "#{msg}: #{val}"
     val
   end
 
