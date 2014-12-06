@@ -19,16 +19,19 @@ class Player
     pot = player['pot']
 
     result = 0
+    hand_value = nil
 
     if pot != @last_pot
       cards = player['hole_cards']
       cards = player['hole_cards'] + community_cards unless community_cards.nil?
-      result = ranking.weight_sqrt(ranking.rank(cards)) * BET_MULTIPLIER
+      hand_value = ranking.rank(cards)
+      result = ranking.weight_sqrt(hand_value) * BET_MULTIPLIER
     end
 
-    puts "hole cards = #{player['hole_cards'].map { |c| short_card c }}"
-    puts "community cards = #{game_state['community_cards'].map { |c| short_card c }}"
-    puts "bet -> #{result}"
+    log "hole cards = #{player['hole_cards'].map { |c| short_card c }}"
+    log "community cards = #{game_state['community_cards'].map { |c| short_card c }}"
+    log "hand value -> #{hand_value}"
+    log "bet -> #{result}"
 
     @last_pot = pot
     result
@@ -37,6 +40,10 @@ class Player
   def showdown(game_state)
 
   end
+end
+
+def log(msg)
+  puts "[#{Time.new.strftime("%Y-%m-%d %H:%M:%S")}] #{msg}"
 end
 
 def short_card(card)
