@@ -9,7 +9,7 @@ class Player
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
     bet = 0
     for card in player['hole_cards']
-        if card[:rank] == "A"
+        if card[:rank] == "A" || card[:rank] == "K" || card[:rank] == "Q"
             bet = 1000
         else
             bet = 100
