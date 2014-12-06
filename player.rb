@@ -25,6 +25,8 @@ class Player
       result = ranking.weight_sqrt(ranking.rank(cards)) * BET_MULTIPLIER
     end
 
+    puts "bet -> #{result}"
+
     @last_pot = pot
     result
   end
