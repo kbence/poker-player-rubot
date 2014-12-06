@@ -7,14 +7,26 @@ class Player
   NAME = 'Rubot'
   BET_MULTIPLIER = 20
 
+  def initialize
+    @last_pot = -1
+  end
+
   def bet_request(game_state)
     ranking = Ranking.new
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
     community_cards = game_state['community_cards']
+    pot = player['pot']
 
-    cards = player['hole_cards']
-    cards = player['hole_cards'] + community_cards unless community_cards.nil?
-    ranking.weight_sqrt(ranking.rank(cards)) * BET_MULTIPLIER
+    result = 0
+
+    if pot != @last_pot
+      cards = player['hole_cards']
+      cards = player['hole_cards'] + community_cards unless community_cards.nil?
+      result = ranking.weight_sqrt(ranking.rank(cards)) * BET_MULTIPLIER
+    end
+
+    @last_pot = pot
+    result
   end
 
   def showdown(game_state)
