@@ -20,7 +20,16 @@ describe 'Player' do
           "stack":1000,
           "status":"active",
           "bet":0,
-          "hole_cards":[],
+          "hole_cards":[
+            {
+              "rank": "6",
+              "suit": "hearts"
+            },
+            {
+              "rank": "K",
+              "suit": "spades"
+            }
+          ],
           "version":"Version name 2",
           "id":1
       }
@@ -32,7 +41,6 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-
       expect(player.bet_request(game_state)).is_a? Integer
     end
 
