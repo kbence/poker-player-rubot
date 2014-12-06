@@ -32,7 +32,7 @@ describe 'Ranking' do
     end
 
     it 'should return 40 for two pairs' do
-      Ranking.new.rank(cards('C9', 'D9', 'S5', 'H5')).should be(40)
+      Ranking.new.rank(cards('C9', 'D9', 'S5', 'H5')).should be(60)
     end
 
     it 'should return 50 for three of a kind' do

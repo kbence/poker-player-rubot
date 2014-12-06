@@ -1,4 +1,3 @@
-
 class Ranking
   def rank(cards)
     value = 0
@@ -54,7 +53,7 @@ class Ranking
     if ranks.has_value? 2
       return case ranks.select { |k, v| v == 2 }.length
                when 2
-                 40
+                 60
                else
                  20
              end
@@ -76,6 +75,6 @@ class Ranking
   end
 
   def sum(array)
-    array.inject{|sum,x| sum + x}
+    array.inject { |sum, x| sum + x }
   end
 end
