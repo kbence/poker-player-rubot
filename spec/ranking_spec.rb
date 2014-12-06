@@ -40,11 +40,11 @@ describe 'Ranking' do
     end
 
     it 'should return 40 in case of almost flush' do
-      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6'))).to eq(40)
+      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'D6'))).to eq(60)
     end
 
     it 'should return 50 in case of almost flush' do
-      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6'))).to eq(50)
+      expect(Ranking.new.rank(cards('S5', 'S2', 'S3', 'S4', 'S6'))).to eq(100)
     end
   end
 
@@ -67,7 +67,7 @@ describe 'Ranking' do
 
   describe 'choose' do
     it 'should return the only combination for less than expected' do
-      expect(Ranking.new.)
+      expect(Ranking.new)
     end
   end
 end
