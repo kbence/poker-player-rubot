@@ -83,7 +83,7 @@ class Ranking
     end
 
     if ranks.has_value? 3 && ranks.has_value? 2
-      return 100
+      return 150
     end
 
     if ranks.has_value? 3
