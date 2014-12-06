@@ -22,5 +22,9 @@ describe 'Ranking' do
     it 'should return 10 for high cards' do
       Ranking.new.rank(cards('CA', 'DJ')).should be(10)
     end
+
+    it 'should return 20 for pair' do
+      Ranking.new.rank(cards('C10', 'D10')).should be(20)
+    end
   end
 end
