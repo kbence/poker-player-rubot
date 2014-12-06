@@ -2,8 +2,9 @@ require_relative 'ranking'
 
 class Player
 
-  VERSION = "Default Ruby folding player"
+  attr_accessor :last_pot
 
+  VERSION = "Default Ruby folding player"
   NAME = 'Rubot'
   BET_MULTIPLIER = 20
 
