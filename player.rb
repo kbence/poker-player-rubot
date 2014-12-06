@@ -10,7 +10,7 @@ class Player
     ranking = Ranking.new
     player = game_state['players'].select { |pl| pl['name'] == NAME }.first
 
-    ranking.rank(player['hole_cards']) * 50
+    ranking.rank(player['hole_cards']) * 25
   end
 
   def showdown(game_state)
