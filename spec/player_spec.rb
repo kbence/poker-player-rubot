@@ -44,7 +44,7 @@ describe 'Player' do
       expect(player.bet_request(game_state)).is_a? Integer
     end
 
-    it 'should return 500 for an ace' do
+    it 'should return 125 for a king' do
       player = Player.new
       game_state = JSON.parse('{
           "players":[
@@ -81,10 +81,10 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(250)
+      expect(player.bet_request(game_state)).to eq(125)
     end
 
-    it 'should return 500 for an ace' do
+    it 'should return 250 for an Ace and King' do
       player = Player.new
       game_state = JSON.parse('{
           "players":[
@@ -121,7 +121,7 @@ describe 'Player' do
           "current_buy_in":0,
           "pot":0
       }')
-      expect(player.bet_request(game_state)).to eq(500)
+      expect(player.bet_request(game_state)).to eq(250)
     end
   end
 end
